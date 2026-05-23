@@ -1,196 +1,202 @@
 package com.condominio.vistaverde.ui;
 
+import com.condominio.vistaverde.model.Condominio;
+import com.condominio.vistaverde.logic.Validador;
+import com.condominio.vistaverde.utils.DialogUtils;
 import com.condominio.vistaverde.utils.DateUtils;
+import com.condominio.vistaverde.persistence.Persistencia;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
-import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.awt.Dimension;
+import java.time.LocalDate;
 
-public class InicioUI extends JFrame {
+public class ConfiguracionCuotaUI extends JDialog {
     
-    private JButton btnRegistroPropietario;
-    private JButton btnRegistroPago;
-    private JButton btnConfiguracionCuota;
-    private JButton btnEstadoCuenta;
-    private JButton btnReporteGeneral;
-    private JButton btnCasasMorosas;
-    private JButton btnEliminarPropietario;
-    private JButton btnCerrarSesion;
-    private JLabel lblBienvenida;
-    private JLabel lblFecha;
-    private JLabel lblHora;
+    private JTextField txtCuotaActual;
+    private JTextField txtNuevaCuota;
+    private JTextField txtUltimoCambio;
+    private JButton btnGuardar;
+    private JButton btnCancelar;
+    private Condominio condominio;
+    private Persistencia persistencia;
     
-    public InicioUI() {
+    public ConfiguracionCuotaUI(JFrame parent) {
+        super(parent, "Configurar Cuota de Mantenimiento", true);
+        cargarDatos();
         initComponents();
-        iniciarReloj();
+    }
+    
+    private void cargarDatos() {
+        persistencia = new Persistencia();
+        if (persistencia.existeArchivo()) {
+            try {
+                condominio = persistencia.cargar();
+            } catch (Exception e) {
+                condominio = new Condominio("Vista Verde");
+            }
+        } else {
+            condominio = new Condominio("Vista Verde");
+        }
     }
     
     private void initComponents() {
-        setTitle("Condominio Vista Verde - Sistema de Gestion");
-        setSize(1000, 650);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setSize(550, 400);
+        setLocationRelativeTo(getParent());
+        setResizable(false);
         
         JPanel panelPrincipal = new JPanel(new BorderLayout(10, 10));
         panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelPrincipal.setBackground(Color.WHITE);
         
-        JPanel panelHeader = new JPanel(new BorderLayout());
-        panelHeader.setBackground(new Color(0, 102, 204));
-        panelHeader.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        JPanel panelFormulario = new JPanel(new GridLayout(4, 2, 15, 20));
+        panelFormulario.setBorder(BorderFactory.createTitledBorder(
+            BorderFactory.createLineBorder(new Color(241, 196, 15), 2),
+            "Configuracion de Cuota",
+            javax.swing.border.TitledBorder.CENTER,
+            javax.swing.border.TitledBorder.TOP,
+            new Font("Segoe UI", Font.BOLD, 14),
+            new Color(241, 196, 15)));
+        panelFormulario.setBackground(Color.WHITE);
         
-        JLabel lblTitulo = new JLabel("CONDOMINIO VISTA VERDE", SwingConstants.CENTER);
-        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 26));
-        lblTitulo.setForeground(Color.WHITE);
-        panelHeader.add(lblTitulo, BorderLayout.CENTER);
+        JLabel lblCuotaActual = new JLabel("Cuota actual (Q):");
+        lblCuotaActual.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        txtCuotaActual = new JTextField();
+        txtCuotaActual.setText(String.format("%.2f", condominio.getCuotaMensual()));
+        txtCuotaActual.setEditable(false);
+        txtCuotaActual.setBackground(new Color(240, 240, 240));
+        txtCuotaActual.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        txtCuotaActual.setForeground(new Color(0, 102, 204));
+        txtCuotaActual.setHorizontalAlignment(JTextField.CENTER);
+        txtCuotaActual.setPreferredSize(new Dimension(150, 30));
         
-        JPanel panelInfo = new JPanel(new GridLayout(1, 3, 10, 0));
-        panelInfo.setBackground(new Color(0, 102, 204));
+        JLabel lblNuevaCuota = new JLabel("Nueva cuota (Q):");
+        lblNuevaCuota.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        txtNuevaCuota = new JTextField();
+        txtNuevaCuota.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        txtNuevaCuota.setHorizontalAlignment(JTextField.CENTER);
+        txtNuevaCuota.setPreferredSize(new Dimension(150, 30));
         
-        lblBienvenida = new JLabel("Bienvenido, Administrador");
-        lblBienvenida.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-        lblBienvenida.setForeground(Color.WHITE);
+        JLabel lblUltimoCambio = new JLabel("Ultimo cambio:");
+        lblUltimoCambio.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        txtUltimoCambio = new JTextField();
+        if (condominio.getFechaUltimoCambioCuota() != null) {
+            txtUltimoCambio.setText(DateUtils.formatearFecha(condominio.getFechaUltimoCambioCuota()));
+        } else {
+            txtUltimoCambio.setText("Nunca");
+        }
+        txtUltimoCambio.setEditable(false);
+        txtUltimoCambio.setBackground(new Color(240, 240, 240));
+        txtUltimoCambio.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        txtUltimoCambio.setHorizontalAlignment(JTextField.CENTER);
         
-        lblFecha = new JLabel(DateUtils.getNombreMes(DateUtils.getMesActual()) + " " + DateUtils.getAnioActual());
-        lblFecha.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-        lblFecha.setForeground(Color.WHITE);
-        lblFecha.setHorizontalAlignment(SwingConstants.CENTER);
+        panelFormulario.add(lblCuotaActual);
+        panelFormulario.add(txtCuotaActual);
+        panelFormulario.add(lblNuevaCuota);
+        panelFormulario.add(txtNuevaCuota);
+        panelFormulario.add(lblUltimoCambio);
+        panelFormulario.add(txtUltimoCambio);
+        panelFormulario.add(new JLabel());
+        panelFormulario.add(new JLabel());
         
-        lblHora = new JLabel("");
-        lblHora.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-        lblHora.setForeground(Color.WHITE);
-        lblHora.setHorizontalAlignment(SwingConstants.RIGHT);
+        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        panelBotones.setBackground(Color.WHITE);
         
-        panelInfo.add(lblBienvenida);
-        panelInfo.add(lblFecha);
-        panelInfo.add(lblHora);
-        panelHeader.add(panelInfo, BorderLayout.SOUTH);
+        btnGuardar = new JButton("GUARDAR CAMBIOS");
+        btnGuardar.setBackground(new Color(241, 196, 15));
+        btnGuardar.setForeground(Color.WHITE);
+        btnGuardar.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        btnGuardar.setFocusPainted(false);
+        btnGuardar.setBorder(BorderFactory.createEmptyBorder(10, 25, 10, 25));
         
-        JPanel panelMenu = new JPanel(new GridLayout(2, 4, 25, 25));
-        panelMenu.setBackground(Color.WHITE);
-        panelMenu.setBorder(BorderFactory.createEmptyBorder(40, 50, 40, 50));
+        btnCancelar = new JButton("CANCELAR");
+        btnCancelar.setBackground(new Color(200, 0, 0));
+        btnCancelar.setForeground(Color.WHITE);
+        btnCancelar.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        btnCancelar.setFocusPainted(false);
+        btnCancelar.setBorder(BorderFactory.createEmptyBorder(10, 25, 10, 25));
         
-        btnRegistroPropietario = crearBoton("Registrar Propietario", new Color(52, 152, 219));
-        btnRegistroPago = crearBoton("Registrar Pago", new Color(46, 204, 113));
-        btnConfiguracionCuota = crearBoton("Configurar Cuota", new Color(241, 196, 15));
-        btnEstadoCuenta = crearBoton("Estado de Cuenta", new Color(155, 89, 182));
-        btnReporteGeneral = crearBoton("Reporte General", new Color(230, 126, 34));
-        btnCasasMorosas = crearBoton("Casas Morosas", new Color(231, 76, 60));
-        btnEliminarPropietario = crearBoton("Eliminar Propietario", new Color(200, 0, 0));
+        panelBotones.add(btnGuardar);
+        panelBotones.add(btnCancelar);
         
-        panelMenu.add(btnRegistroPropietario);
-        panelMenu.add(btnRegistroPago);
-        panelMenu.add(btnConfiguracionCuota);
-        panelMenu.add(btnEstadoCuenta);
-        panelMenu.add(btnReporteGeneral);
-        panelMenu.add(btnCasasMorosas);
-        panelMenu.add(btnEliminarPropietario);
+        JPanel panelInfo = new JPanel();
+        panelInfo.setBackground(new Color(255, 255, 200));
+        panelInfo.setBorder(BorderFactory.createLineBorder(new Color(241, 196, 15), 1));
+        JLabel lblInfo = new JLabel("Los cambios aplican al mes siguiente (no afecta el mes actual)");
+        lblInfo.setFont(new Font("Segoe UI", Font.ITALIC, 11));
+        lblInfo.setForeground(new Color(200, 100, 0));
+        panelInfo.add(lblInfo);
         
-        JPanel panelFooter = new JPanel();
-        panelFooter.setBackground(Color.WHITE);
-        
-        btnCerrarSesion = new JButton("Cerrar Sesion");
-        btnCerrarSesion.setBackground(new Color(200, 0, 0));
-        btnCerrarSesion.setForeground(Color.WHITE);
-        btnCerrarSesion.setFont(new Font("Segoe UI", Font.BOLD, 13));
-        btnCerrarSesion.setFocusPainted(false);
-        btnCerrarSesion.setBorder(BorderFactory.createEmptyBorder(10, 25, 10, 25));
-        panelFooter.add(btnCerrarSesion);
-        
-        panelPrincipal.add(panelHeader, BorderLayout.NORTH);
-        panelPrincipal.add(panelMenu, BorderLayout.CENTER);
-        panelPrincipal.add(panelFooter, BorderLayout.SOUTH);
+        panelPrincipal.add(panelFormulario, BorderLayout.CENTER);
+        panelPrincipal.add(panelBotones, BorderLayout.SOUTH);
+        panelPrincipal.add(panelInfo, BorderLayout.NORTH);
         
         add(panelPrincipal);
         
-        btnRegistroPropietario.addActionListener(e -> abrirRegistroPropietario());
-        btnRegistroPago.addActionListener(e -> abrirRegistroPago());
-        btnConfiguracionCuota.addActionListener(e -> abrirConfiguracionCuota());
-        btnEstadoCuenta.addActionListener(e -> abrirEstadoCuenta());
-        btnReporteGeneral.addActionListener(e -> abrirReporteGeneral());
-        btnCasasMorosas.addActionListener(e -> abrirCasasMorosas());
-        btnEliminarPropietario.addActionListener(e -> abrirEliminarPropietario());
-        btnCerrarSesion.addActionListener(e -> cerrarSesion());
+        btnGuardar.addActionListener(e -> guardar());
+        btnCancelar.addActionListener(e -> dispose());
     }
     
-    private JButton crearBoton(String texto, Color color) {
-        JButton boton = new JButton(texto);
-        boton.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        boton.setBackground(color);
-        boton.setForeground(Color.WHITE);
-        boton.setFocusPainted(false);
-        boton.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        boton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        return boton;
-    }
-    
-    private void iniciarReloj() {
-        Thread reloj = new Thread(() -> {
-            while (true) {
-                LocalDateTime ahora = LocalDateTime.now();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-                lblHora.setText(ahora.format(formatter));
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    break;
-                }
+    private void guardar() {
+        String nuevaCuotaStr = txtNuevaCuota.getText().trim();
+        
+        if (nuevaCuotaStr.isEmpty()) {
+            DialogUtils.mostrarAdvertencia(this, "Ingrese el nuevo monto de la cuota");
+            return;
+        }
+        
+        double nuevaCuota;
+        try {
+            nuevaCuota = Double.parseDouble(nuevaCuotaStr);
+        } catch (NumberFormatException e) {
+            DialogUtils.mostrarError(this, "Ingrese un valor numerico valido");
+            return;
+        }
+        
+        if (!Validador.validarMonto(nuevaCuota)) {
+            DialogUtils.mostrarError(this, "El monto debe ser mayor a cero");
+            return;
+        }
+
+        
+        LocalDate ahora = LocalDate.now();
+        LocalDate ultimoCambio = condominio.getFechaUltimoCambioCuota();
+        
+        if (ultimoCambio != null && 
+            ultimoCambio.getYear() == ahora.getYear() &&
+            ultimoCambio.getMonthValue() == ahora.getMonthValue()) {
+            DialogUtils.mostrarError(this, "Solo se puede cambiar la cuota una vez por mes.\n" +
+                                     "Ya se realizo un cambio este mes (fecha: " + 
+                                     DateUtils.formatearFecha(ultimoCambio) + ")");
+            return;
+        }
+        
+        boolean cambiado = condominio.setCuotaMensual(nuevaCuota);
+        
+        if (cambiado) {
+            try {
+                persistencia.guardar(condominio);
+                DialogUtils.mostrarExito(this, "Cuota actualizada correctamente a Q" + 
+                                         String.format("%.2f", nuevaCuota) +
+                                         "\nEl cambio aplicara a partir del mes siguiente.");
+                txtCuotaActual.setText(String.format("%.2f", nuevaCuota));
+                txtUltimoCambio.setText(DateUtils.formatearFecha(ahora));
+                txtNuevaCuota.setText("");
+                dispose();
+            } catch (Exception e) {
+                DialogUtils.mostrarError(this, "Error al guardar los cambios: " + e.getMessage());
             }
-        });
-        reloj.start();
-    }
-    
-    private void abrirRegistroPropietario() {
-        RegistroPropietarioUI dialog = new RegistroPropietarioUI(this);
-        dialog.setVisible(true);
-    }
-    
-    private void abrirRegistroPago() {
-        RegistroPagoUI dialog = new RegistroPagoUI(this);
-        dialog.setVisible(true);
-    }
-    
-    private void abrirConfiguracionCuota() {
-        ConfiguracionCuotaUI dialog = new ConfiguracionCuotaUI(this);
-        dialog.setVisible(true);
-    }
-    
-    private void abrirEstadoCuenta() {
-        EstadoCuentaUI dialog = new EstadoCuentaUI(this);
-        dialog.setVisible(true);
-    }
-    
-    private void abrirReporteGeneral() {
-        ReporteGeneralUI dialog = new ReporteGeneralUI(this);
-        dialog.setVisible(true);
-    }
-    
-    private void abrirCasasMorosas() {
-        CasasMorosasUI dialog = new CasasMorosasUI(this);
-        dialog.setVisible(true);
-    }
-    
-    private void abrirEliminarPropietario() {
-        EliminarPropietarioUI dialog = new EliminarPropietarioUI(this);
-        dialog.setVisible(true);
-    }
-    
-    private void cerrarSesion() {
-        int confirm = javax.swing.JOptionPane.showConfirmDialog(this, 
-            "Esta seguro que desea cerrar sesion?", 
-            "Cerrar Sesion", 
-            javax.swing.JOptionPane.YES_NO_OPTION);
-        if (confirm == javax.swing.JOptionPane.YES_OPTION) {
-            dispose();
-            new LoginUI().setVisible(true);
+        } else {
+            DialogUtils.mostrarError(this, "Error al cambiar la cuota");
         }
     }
 }

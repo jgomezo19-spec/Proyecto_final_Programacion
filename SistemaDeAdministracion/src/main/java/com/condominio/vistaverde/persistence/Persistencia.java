@@ -10,16 +10,21 @@ import java.io.ObjectOutputStream;
 
 public class Persistencia {
     
-    private static final String ARCHIVO_DATOS = "condominio.dat";
+    // Ruta que funciona en Windows, Mac y Linux
+    private static final String ARCHIVO_DATOS = System.getProperty("user.home") + "/condominio.dat";
     
     public void guardar(Condominio condominio) throws IOException {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARCHIVO_DATOS))) {
+        File archivo = new File(ARCHIVO_DATOS);
+        
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivo))) {
             oos.writeObject(condominio);
         }
     }
     
     public Condominio cargar() throws IOException, ClassNotFoundException {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ARCHIVO_DATOS))) {
+        File archivo = new File(ARCHIVO_DATOS);
+        
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
             return (Condominio) ois.readObject();
         }
     }

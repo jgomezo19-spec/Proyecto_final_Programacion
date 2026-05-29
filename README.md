@@ -209,41 +209,23 @@ chmod +x VistaVerde-Linux.sh
 ## Capturas del Programa
 
 * ##### **Pantalla 1 Login**
-
-
-
+![Login](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Login.png)
 * ##### **Pantalla 2 Menú**
-
-
-
+![Menu](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Menu.png)
 * ##### **Pantalla 3 Registro Propietario**
-
-
-
+![Registro_Propietario](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Registrar%20propietario.png)
 * ##### **Pantalla 4 Registro Pago**
-
-
-
-* ##### **Pantalla 5 Registro Configurar Cuota**
-
-
-
-* ##### **Pantalla 6 Registro Estado de Cuenta**
-
-
-
-* ##### **Pantalla 7 Registro Reporte General**
-
-
-
-* ##### **Pantalla 8 Registro Casas Morosas**
-
-
-
-* ##### **Pantalla 9 Registro Eliminar Propietario**
-
-
-
+![Registro_Pago](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Registrar%20pagos.png)
+* ##### **Pantalla 5 Configurar Cuota**
+![Configurar_Cuota](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Configurar%20cuota.png)
+* ##### **Pantalla 6 Estado de Cuenta**
+![Estado_De_Cuenta](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Estado%20de%20cuenta.png)
+* ##### **Pantalla 7 Reporte General**
+![Reporte_General](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Reporte%20general.png)
+* ##### **Pantalla 8 Casas Morosas**
+![Casas_Morosas](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Casas%20Morosas.png)
+* ##### **Pantalla 9 Eliminar Propietario**
+![Eliminar_Propietario](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Eliminar%20Propietario.png)
 ## **Link al tablero de Jira del equipo**
 
 **https://miumg-team-d89hd7i2.atlassian.net/jira/software/projects/PP/boards/1?atlOrigin=eyJpIjoiOWZhNjBiOTVhYmE4NDgwNGE1YTA3YzM5MjA3ZTczZGUiLCJwIjoiaiJ9**

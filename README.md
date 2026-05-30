@@ -208,7 +208,7 @@ chmod +x VistaVerde-Linux.sh
 
 el único ejecutable apto para ser puesto en Lugares fuera de la carpeta de origen es: 
 
-###### **SistemaDeAdministracion-1.0-SNAPSHOT**
+###### **SistemaDeAdministracion-1.0-SNAPSHOT**.
 
 ## Capturas del Programa
 

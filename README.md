@@ -97,8 +97,6 @@ carne: 0900-25-18482
 
 Rol: Desarrollador
 
-
-
 ## **Instrucciones para Ejecutar el Proyecto**
 
 ### **Requisitos Previos**
@@ -206,26 +204,50 @@ chmod +x VistaVerde-Linux.sh
 
 (3)Haz doble clic en VistaVerde-Linux.sh → "Ejecutar en la terminal"
 
+## **Aplicación de Escritorio**
+
+el único ejecutable apto para ser puesto en Lugares fuera de la carpeta de origen es: 
+
+###### **SistemaDeAdministracion-1.0-SNAPSHOT**
+
 ## Capturas del Programa
 
 * ##### **Pantalla 1 Login**
-![Login](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Login.png)
+
+!\[Login](https://github.com/jgomezo19-spec/Proyecto\_final\_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Login.png)
+
 * ##### **Pantalla 2 Menú**
-![Menu](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Menu.png)
+
+!\[Menu](https://github.com/jgomezo19-spec/Proyecto\_final\_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Menu.png)
+
 * ##### **Pantalla 3 Registro Propietario**
-![Registro_Propietario](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Registrar%20propietario.png)
+
+!\[Registro\_Propietario](https://github.com/jgomezo19-spec/Proyecto\_final\_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Registrar%20propietario.png)
+
 * ##### **Pantalla 4 Registro Pago**
-![Registro_Pago](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Registrar%20pagos.png)
+
+!\[Registro\_Pago](https://github.com/jgomezo19-spec/Proyecto\_final\_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Registrar%20pagos.png)
+
 * ##### **Pantalla 5 Configurar Cuota**
-![Configurar_Cuota](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Configurar%20cuota.png)
+
+!\[Configurar\_Cuota](https://github.com/jgomezo19-spec/Proyecto\_final\_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Configurar%20cuota.png)
+
 * ##### **Pantalla 6 Estado de Cuenta**
-![Estado_De_Cuenta](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Estado%20de%20cuenta.png)
+
+!\[Estado\_De\_Cuenta](https://github.com/jgomezo19-spec/Proyecto\_final\_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Estado%20de%20cuenta.png)
+
 * ##### **Pantalla 7 Reporte General**
-![Reporte_General](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Reporte%20general.png)
+
+!\[Reporte\_General](https://github.com/jgomezo19-spec/Proyecto\_final\_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Reporte%20general.png)
+
 * ##### **Pantalla 8 Casas Morosas**
-![Casas_Morosas](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Casas%20Morosas.png)
+
+!\[Casas\_Morosas](https://github.com/jgomezo19-spec/Proyecto\_final\_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Casas%20Morosas.png)
+
 * ##### **Pantalla 9 Eliminar Propietario**
-![Eliminar_Propietario](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Eliminar%20Propietario.png)
+
+!\[Eliminar\_Propietario](https://github.com/jgomezo19-spec/Proyecto\_final\_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Eliminar%20Propietario.png)
+
 ## **Link al tablero de Jira del equipo**
 
 **https://miumg-team-d89hd7i2.atlassian.net/jira/software/projects/PP/boards/1?atlOrigin=eyJpIjoiOWZhNjBiOTVhYmE4NDgwNGE1YTA3YzM5MjA3ZTczZGUiLCJwIjoiaiJ9**

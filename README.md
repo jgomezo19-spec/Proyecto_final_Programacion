@@ -206,6 +206,10 @@ chmod +x VistaVerde-Linux.sh
 
 (3)Haz doble clic en VistaVerde-Linux.sh → "Ejecutar en la terminal"
 
+## Programa para escritorio
+el único ejecutable apto para ser puesto en Lugares fuera de la carpeta de origen es:
+SistemaDeAdministracion-1.0-SNAPSHOT
+
 ## Capturas del Programa
 
 * ##### **Pantalla 1 Login**

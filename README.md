@@ -214,7 +214,7 @@ el único ejecutable apto para ser puesto en Lugares fuera de la carpeta de orig
 
 * ##### **Pantalla 1 Login**
 
-!\[Login](https://github.com/jgomezo19-spec/Proyecto\_final\_Programacion/blob/bab52011c4bde5fbac7ded2ae997b0fa2c568265/imagenes/Login.png)
+!\[Login](https://github.com/jgomezo19-spec/Proyecto_final_Programacion/blob/37996b09797710b544f32fc1dc1ccc97bafd1561/imagenes/Login.png)
 
 * ##### **Pantalla 2 Menú**
 
